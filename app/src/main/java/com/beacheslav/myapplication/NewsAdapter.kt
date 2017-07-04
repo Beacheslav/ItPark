@@ -31,7 +31,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>(){
     }
 
     class Holder (view : View) : RecyclerView.ViewHolder(view){
-        val title : TextView = view.title_new
-        val text : TextView = view.text_new
+        val title : TextView = view.titleNew
+        val text : TextView = view.textNew
     }
 }

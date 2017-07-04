@@ -6,7 +6,7 @@
     android:weightSum="1">
 
     <Button
-        android:id="@+id/final_register_button"
+        android:id="@+id/finalRegisterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
@@ -20,28 +20,28 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/edit_name_register"
+            android:id="@+id/editNameRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Имя"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/edit_"
+            android:id="@+id/editFamilyRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Фамилия"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editLoginRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Логин"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/editPasswordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Пароль"

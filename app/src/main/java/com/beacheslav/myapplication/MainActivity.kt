@@ -12,12 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        register_button.setOnClickListener(View.OnClickListener {
+        registerButton.setOnClickListener(View.OnClickListener {
             val intent = Intent(this@MainActivity, RegistrationActivity::class.java)
             startActivity(intent)
         })
 
-        sign_in_button.setOnClickListener(View.OnClickListener {
+        signInButton.setOnClickListener(View.OnClickListener {
             val intent = Intent(this@MainActivity, UserInformationActivity::class.java)
             startActivity(intent)
         })
