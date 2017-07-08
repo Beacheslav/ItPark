@@ -3,4 +3,8 @@
     <string name="registration_text">Регистрация</string>
     <string name="sign_in_text">Войти</string>
     <string name="error">Произошла ошибка!</string>
+    <string name="login_hint">Логин</string>
+    <string name="password_hint">Пароль</string>
+    <string name="Comments_text">Комментарии</string>
+    <string name="news_text">Новости</string>
 </resources>

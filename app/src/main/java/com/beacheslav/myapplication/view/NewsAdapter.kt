@@ -1,14 +1,23 @@
 package com.beacheslav.myapplication.view
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.beacheslav.myapplication.R
+import com.beacheslav.myapplication.presenter.NewsPresenter
+import com.beacheslav.myapplication.presenter.contract.NewsContract
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_news.view.*
+import org.jetbrains.anko.sdk15.listeners.onClick
+import org.jetbrains.anko.longToast
+
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>(){
 
@@ -32,14 +41,25 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>(){
         holder.title.text = item.title
         holder.text.text = item.text
 
+        holder.comments.onClick {                                    //FIXME: нажатие крашит приложение(NullPointerException)
+            holder.presenter.onCommentsClick()
+        }
+
         Glide.with(holder.itemView.context).
                 load(item.image).
                 into(holder.image)
     }
 
-    class Holder (view : View) : RecyclerView.ViewHolder(view){
+    class Holder (view : View) :NewsContract.View,  RecyclerView.ViewHolder(view){
+
+        override fun displayError() {
+
+        }
+        val presenter : NewsContract.Presenter = NewsPresenter(this, NewsActivity())
+
         val title : TextView = view.titleNew
         val text : TextView = view.textNew
-        val image : ImageView = view.image
+        val image : ImageView = view.imageNew
+        val comments : Button = view.commentsNewButton
     }
 }

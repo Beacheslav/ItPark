@@ -13,5 +13,4 @@ class RegistrationPresenter(
     override fun onRegistrationClick(fName: String, lName: String, login: String, password: String) {
         navigator.toLogin()
     }
-
 }

@@ -1,4 +1,4 @@
-package com.beacheslav.myapplication.presenter.contract
+package com.beacheslav.myapplication.presenter
 
 import android.app.Activity
 import com.beacheslav.myapplication.presenter.contract.LoginContract
@@ -11,7 +11,7 @@ class LoginPresenter(
     private val navigator = LoginNavigator(activity)
 
     override fun onLoginClick(login: String, password: String) {
-        navigator.toMain()
+        navigator.toUserInformation()
     }
 
     override fun onRegistrationClick() {

@@ -7,6 +7,8 @@ import com.beacheslav.myapplication.R
 import com.beacheslav.myapplication.presenter.contract.RegistrationContract
 import com.beacheslav.myapplication.presenter.contract.RegistrationPresenter
 import kotlinx.android.synthetic.main.activity_register.*
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.sdk15.listeners.onClick
 
 class RegistrationActivity : RegistrationContract.View, AppCompatActivity() {
 

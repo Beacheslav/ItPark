@@ -15,14 +15,14 @@
             android:id="@+id/editLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Логин"
+            android:hint="@string/login_hint"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Пароль"
+            android:hint="@string/password_hint"
             android:inputType="textPassword" />
 
         <Button
