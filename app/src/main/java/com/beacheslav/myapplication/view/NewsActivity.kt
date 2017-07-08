@@ -20,7 +20,13 @@ import okhttp3.RequestBody
 import org.jetbrains.anko.longToast
 import java.util.concurrent.TimeUnit
 
-class NewsActivity : AppCompatActivity() {
+class NewsActivity : NewsContract.View, AppCompatActivity() {
+
+    val presenter : NewsContract.Presenter = NewsPresenter(this, this)
+
+    override fun displayError() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     class New(
             val title: String,
@@ -65,7 +71,7 @@ class NewsActivity : AppCompatActivity() {
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{ news ->
-                    val adapter = NewsAdapter()
+                    val adapter = NewsAdapter(presenter)
                     adapter.setData(news)
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(this)

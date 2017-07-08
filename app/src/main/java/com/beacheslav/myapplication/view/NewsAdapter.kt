@@ -19,7 +19,7 @@ import org.jetbrains.anko.sdk15.listeners.onClick
 import org.jetbrains.anko.longToast
 
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>(){
+class NewsAdapter(val presenter: NewsContract.Presenter) : RecyclerView.Adapter<NewsAdapter.Holder>(){
 
     var mData : List<NewsActivity.New> = emptyList()
     fun setData(data: List<NewsActivity.New>){
@@ -42,7 +42,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>(){
         holder.text.text = item.text
 
         holder.comments.onClick {                                    //FIXME: нажатие крашит приложение(NullPointerException)
-            holder.presenter.onCommentsClick()
+            presenter.onCommentsClick()
         }
 
         Glide.with(holder.itemView.context).
@@ -55,7 +55,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>(){
         override fun displayError() {
 
         }
-        val presenter : NewsContract.Presenter = NewsPresenter(this, NewsActivity())
 
         val title : TextView = view.titleNew
         val text : TextView = view.textNew
