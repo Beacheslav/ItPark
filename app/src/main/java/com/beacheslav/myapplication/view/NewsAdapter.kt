@@ -41,7 +41,7 @@ class NewsAdapter(val presenter: NewsContract.Presenter) : RecyclerView.Adapter<
         holder.title.text = item.title
         holder.text.text = item.text
 
-        holder.comments.onClick {                                    //FIXME: нажатие крашит приложение(NullPointerException)
+        holder.comments.onClick {
             presenter.onCommentsClick()
         }
 
