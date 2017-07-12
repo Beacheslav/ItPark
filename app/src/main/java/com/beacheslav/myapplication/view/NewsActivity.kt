@@ -3,8 +3,10 @@ package com.beacheslav.myapplication.view
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.beacheslav.myapplication.R
+import com.beacheslav.myapplication.db
+import com.beacheslav.myapplication.model.entity.New
+import com.beacheslav.myapplication.model.entity.User
 import com.beacheslav.myapplication.presenter.NewsPresenter
 import com.beacheslav.myapplication.presenter.contract.NewsContract
 import com.google.gson.JsonParser
@@ -12,11 +14,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.android.synthetic.main.item_news.*
-import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody
 import org.jetbrains.anko.longToast
 import java.util.concurrent.TimeUnit
 
@@ -28,7 +27,7 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    class New(
+    class News(
             val newId: Int,
             val title: String,
             val text: String,
@@ -39,10 +38,10 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
 
-        Observable.create<List<New>> {emitter ->
+        Observable.create<List<News>> {emitter ->
 
             val client = OkHttpClient.Builder()
-                    .readTimeout(100000L, TimeUnit.MILLISECONDS)
+                    .readTimeout(1000L, TimeUnit.MILLISECONDS)
                     .build()
 
             val request = Request.Builder()
@@ -61,12 +60,25 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
 
                 val newJson = el.asJsonObject
 
-                val title = newJson["title"].asString
-                val text = newJson["content"].asString
-                val image = newJson["image"].asString
-                val newId = newJson["id"].asInt
+                val titleJs = newJson["title"].asString
+                val textJs = newJson["content"].asString
+                val imageJs = newJson["image"].asString
+                val newIdJs = newJson["id"].asInt
+                val userLoginJs = newJson["userLogin"].asString
 
-                New(newId, title, text, image)
+                val new =
+                        New().apply {
+                            id = newIdJs.toLong()
+                            title = titleJs
+                            content = textJs
+                            image = imageJs
+                            userLogin = userLoginJs
+                        }
+
+                db.newDao().insert(new)
+                db.userDao().all()
+
+                News(newIdJs, titleJs, textJs, imageJs)
             }
 
             emitter.onNext(news)
@@ -78,21 +90,5 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
                     recyclerView.adapter = adapter
                     recyclerView.layoutManager = LinearLayoutManager(this)
                 }
-
-//        Observable.create<List<New>>{
-//            emitter ->
-//
-//            emitter.onNext()
-//        }
-//
-//        Observable.just(1).
-//                flatMap {i ->
-//                    Observable.just("" + 1)
-//                }
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe{ r ->
-//                    Log.e("NewsActivity", r)
-//                }
     }
 }

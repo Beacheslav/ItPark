@@ -10,6 +10,9 @@ interface NewDao{
     @Query("SELECT * FROM news")
     fun all(): List<New>
 
+    @Query("SELECT * FROM news WHERE id = :eqId")
+    fun equalsId(eqId: Long): List<New>
+
     @Insert
     fun insert(new : New)
 }

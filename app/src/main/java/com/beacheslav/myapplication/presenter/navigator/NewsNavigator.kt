@@ -8,6 +8,6 @@ import java.security.Key
 class NewsNavigator(private val activity : Activity){
 
     fun toComments(id : Int){
-        activity.startActivity<CommentsActivity>("KEY_NEW_ID" to id)
+        activity.startActivity<CommentsActivity>(CommentsActivity.KEY_NEW_ID to id)
     }
 }
