@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class TestJava extends AppCompatActivity {
     private Button but;
+    public final static String KEY_NEW_ID = "com.beacheslav.myapplication.presenter.navigator.id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -42,7 +42,7 @@ class NewsAdapter(val presenter: NewsContract.Presenter) : RecyclerView.Adapter<
         holder.text.text = item.text
 
         holder.comments.onClick {
-            presenter.onCommentsClick()
+            presenter.onCommentsClick(item.newId)
         }
 
         Glide.with(holder.itemView.context).

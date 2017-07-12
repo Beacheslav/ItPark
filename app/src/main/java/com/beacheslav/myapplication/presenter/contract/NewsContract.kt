@@ -5,6 +5,6 @@ interface NewsContract{
         fun displayError()
     }
     interface Presenter {
-        fun onCommentsClick()
+        fun onCommentsClick(id : Int)
     }
 }

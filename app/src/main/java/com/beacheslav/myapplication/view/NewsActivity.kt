@@ -29,6 +29,7 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
     }
 
     class New(
+            val newId: Int,
             val title: String,
             val text: String,
             val image: String
@@ -45,7 +46,7 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
                     .build()
 
             val request = Request.Builder()
-                    .url("https://api.myjson.com/bins/a829r")
+                    .url("http://207.254.71.167:8083/park/news")
                     .get()
                     .build()
             val result = client.newCall(request).execute().body().string()
@@ -61,10 +62,11 @@ class NewsActivity : NewsContract.View, AppCompatActivity() {
                 val newJson = el.asJsonObject
 
                 val title = newJson["title"].asString
-                val text = newJson["text"].asString
+                val text = newJson["content"].asString
                 val image = newJson["image"].asString
+                val newId = newJson["id"].asInt
 
-                New(title, text, image)
+                New(newId, title, text, image)
             }
 
             emitter.onNext(news)

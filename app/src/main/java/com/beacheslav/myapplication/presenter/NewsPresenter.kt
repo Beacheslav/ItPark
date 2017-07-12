@@ -8,7 +8,7 @@ class NewsPresenter( val view : NewsContract.View,
 
     private val navigator = NewsNavigator(activity)
 
-    override fun onCommentsClick() {
-        navigator.toComments()
+    override fun onCommentsClick(id : Int) {
+        navigator.toComments(id)
     }
 }
